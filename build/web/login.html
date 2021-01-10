@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            .maindiv{
+                width: 500px;
+                height: 200px;
+                background-color: cadetblue;
+            }
+            .tbl{
+                width: 90%;
+                height: auto;
+                margin-left: 5%;
+                margin-top: 3%;
+                background-color: activecaption;
+                float: left;
+                padding-top: 5%;
+                padding-bottom: 5%;
+            }
+            .td1{
+                font-family: verdana;
+                font-size: 12px;
+                color: black;
+                height: 35px;
+            }
+            .txt{
+                border: 1px solid #000;
+                width: 320px;
+                height: 25px;
+            }
+            .sbt{
+                width: 100px;
+                height: 30px;
+                border: 1px solid #000;
+                color: darkgray;
+                margin-left: 10px;
+                color: black;
+            }
+        </style>
+    </head>
+    <body onload="resize()" onresize="resize()">
+        <div class="maindiv" id="maindiv">
+            <form onsubmit="return validate(this)" action="login" method="post">
+                <table class="tbl">
+                    <tr>
+                        <td class="td1">Email id</td>
+                        <td><input type="text" name="email" size="30" class="txt"></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">Password</td>
+                        <td><input type="password" id="pass" name="pass" size="30" class="txt"></td>    
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" class="sbt" name="sbt" value="SUBMIT">&nbsp;&nbsp;<a href="register.html">New User?</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="color: red;font-size: 10px" id="err"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+    <script>
+        function showpass(ck)
+        {
+            p=document.getElementById("pass");
+            if(ck.checked){
+                p.type="text";
+            }else{
+                p.type="password";
+            }
+        }
+        function resize(){
+            w=window.innerWidth;
+            h=window.innerHeight;
+            l=(w-500)/2;
+            t=(h-380)/2;
+            d=document.getElementById("maindiv");
+            d.style.marginLeft=l;
+            d.style.marginTop=t;
+        }
+        function validateAlpha()
+        {
+            key=event.keyCode;
+            if(!((key>=65&&key<=90)||(key>=97&&key<=122)))
+                event.returnValue=false;
+        }
+        function validateClickAlpha(text)
+        {
+            var req="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            b=false;
+            for(i=0;i<text.length;i++)
+            {
+                c=text.charAt(i);
+                if(req.indexOf(c)==-1){
+                    b=true;
+                    break;
+                }
+            }
+            return b;
+        }
+        function validateEmail(text)
+        {
+            index1=text.lastIndexOf('@');
+            index2=text.lastIndexOf('.');
+            len=text.length;
+            if(index1==-1||index2==-1||index1<1||(index2-index1)<2||(len-index2)<3||text.indexOf(' ')!=-1)  
+                 return true;
+            return false;     
+        }
+        function validate(frm)
+        {
+            e=document.getElementById("err");
+            if(frm.email.value.trim()=="")
+            {
+                e.innerHTML="Please input email";
+                frm.email.focus();
+                return false;
+            }
+            else if(validateEmail(frm.email.value))
+            {
+                e.innerHTML="Please input valid email";
+                frm.email.focus();
+                return false;
+            }
+        }
+    </script>
+</html>

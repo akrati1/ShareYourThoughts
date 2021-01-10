@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            .maindiv{
+                width: 500px;
+                height: 380px;
+                background-color: cadetblue;
+            }
+            .tbl{
+                width: 90%;
+                height: auto;
+                margin-left: 5%;
+                margin-top: 3%;
+                background-color: activecaption;
+                float: left;
+                padding-top: 5%;
+                padding-bottom: 5%;
+            }
+            .td1{
+                font-family: verdana;
+                font-size: 12px;
+                color: black;
+                height: 35px;
+            }
+            .txt{
+                border: 1px solid #000;
+                width: 320px;
+                height: 25px;
+            }
+            .sbt{
+                width: 100px;
+                height: 30px;
+                border: 1px solid #000;
+                color: darkgray;
+                margin-left: 10px;
+                color: black;
+            }
+        </style>
+    </head>
+    <body onload="resize()" onresize="resize()">
+        <div class="maindiv" id="maindiv">
+            <center>
+                <form action="update" enctype="multipart/form-data" method="post">    
+                <img src="images/user-xxl.png" width="120" height="120" style="border: 1px solid #fff;margin-top: 10px;margin-bottom: 10px;"/>
+            <br>
+            <input type="file" name="file"/>
+            <br>
+            <textarea name="about" placeholder="Tell me about yourself" rows="6" cols="60" style="border: 1px solid #000;margin-top: 20px;"></textarea>
+            <br>
+            <input type="submit" name="sbt" value="UPLOAD" style="width: 130px;height: 30px;margin-top: 10px;background-color: darkgray;">
+            </form>
+            </center>
+        </div>
+        <script>
+        function resize(){
+            w=window.innerWidth;
+            h=window.innerHeight;
+            l=(w-500)/2;
+            t=(h-380)/2;
+            d=document.getElementById("maindiv");
+            d.style.marginLeft=l;
+            d.style.marginTop=t;
+        }
+        </script>
+    </body>
+</html>

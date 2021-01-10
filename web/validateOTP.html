@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            .maindiv{
+                width: 500px;
+                height: 160px;
+                background-color: cadetblue;
+            }
+            .tbl{
+                width: 90%;
+                height: auto;
+                margin-left: 5%;
+                margin-top: 3%;
+                background-color: activecaption;
+                float: left;
+                padding-top: 5%;
+                padding-bottom: 5%;
+            }
+            .td1{
+                font-family: verdana;
+                font-size: 12px;
+                color: black;
+                height: 35px;
+            }
+            .txt{
+                border: 1px solid #000;
+                width: 320px;
+                height: 25px;
+            }
+            .sbt{
+                width: 100px;
+                height: 30px;
+                border: 1px solid #000;
+                color: darkgray;
+                margin-left: 10px;
+                color: black;
+            }
+        </style>
+    </head>
+    <body onload="resize()" onresize="resize()">
+        <div class="maindiv" id="maindiv">
+            <form onsubmit="return validate(this)" method="post" action="validate">
+                <table class="tbl">
+                    <tr>
+                        <td class="td1">Enter OTP</td>
+                        <td><input type="text" name="otp" size="30" class="txt"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" class="sbt" name="sbt" value="SUBMIT">&nbsp;&nbsp;<a href="sendotp">Resend OTP</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="color: red;font-size: 10px" id="err"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+    <script>
+        function resize(){
+            w=window.innerWidth;
+            h=window.innerHeight;
+            l=(w-500)/2;
+            t=(h-380)/2;
+            d=document.getElementById("maindiv");
+            d.style.marginLeft=l;
+            d.style.marginTop=t;
+        }
+        function validate(frm)
+        {
+            e=document.getElementById("err");
+            if(frm.otp.value.trim()=="")
+            {
+                e.innerHTML="Please input OTP";
+                frm.otp.focus();
+                return false;
+            }
+        }
+    </script>
+</html>
